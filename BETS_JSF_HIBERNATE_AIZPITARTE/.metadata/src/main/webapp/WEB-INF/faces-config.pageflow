@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf17029397982640" configfile="/BETS_JSF_HIBERNATE_AIZPITARTE/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="Login.xhtml" x="72" y="180" id="pf170294604577023" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf17030255174320 pf17030255343002 pf17032509332670" inlinks="pf17032345737680 pf17032509332671" path="/Login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Galdera.xhtml" x="420" y="60" id="pf17030255174331" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf17032345737680" inlinks="pf17030255174320" path="/Galdera.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Sortu.xhtml" x="188" y="36" id="pf17030255343003" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf17030255343002" path="/Sortu.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="erdikoa.xhtml" x="228" y="216" id="pf17032509332682" outlinks="pf17032509332683" inlinks="pf17032509332670" path="/erdikoa.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ShowEvents.xhtml" x="262" y="396" id="pf17032509332684" outlinks="pf17032509332671" inlinks="pf17032509332683" path="/ShowEvents.xhtml"/>
+  <links id="pf17030255174320" target="pf17030255174331" source="pf170294604577023"/>
+  <links id="pf17030255343002" target="pf17030255343003" source="pf170294604577023"/>
+  <links id="pf17032345737680" target="pf170294604577023" source="pf17030255174331"/>
+  <links id="pf17032509332670" target="pf17032509332682" source="pf170294604577023"/>
+  <links id="pf17032509332683" target="pf17032509332684" source="pf17032509332682"/>
+  <links id="pf17032509332671" target="pf170294604577023" source="pf17032509332684"/>
+</pageflow:Pageflow>

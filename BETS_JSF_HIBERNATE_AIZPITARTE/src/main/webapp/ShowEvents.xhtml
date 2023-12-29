@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<title>Insert title here</title>
+</head>
+<h:body>
+	<p>Events:</p>
+
+	<div class="dropdown-container">
+		<h:panelGroup id="eventuakDropdown" value="#{login.e}">
+			<h:selectOneMenu id="dropdown" value="#{login.deskripzioa}"	styleClass="select-dropdown">
+				<f:selectItems value="#{login.erakustekoak}" />
+				<f:ajax listener="#{login.actualizarE}" />
+			</h:selectOneMenu>
+			<h:message id="dropdownMessage" for="dropdown" styleClass="blue-message" />
+		</h:panelGroup>
+	</div>
+	<div>
+	<h:form>
+	<h:commandButton value="Itzuli" action="#{login.buelta}" />	
+	</h:form>
+	
+	</div>
+</h:body>
+</html>

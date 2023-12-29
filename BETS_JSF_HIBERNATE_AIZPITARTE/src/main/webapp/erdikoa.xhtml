@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>JavaServer Faces aplikazioa</title>
+		<style>
+.custom-button {
+	background-color: #3498db;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.custom-button:hover {
+	background-color: #2980b9;
+}
+</style>
+	</h:head>
+	<h:body>
+		<p>Event Date:</p>
+		<h:form>
+			<div class="calendar-container">
+				<p:calendar id="kalendario" value="#{login.data}" navigator="false"	mode="inline">
+					<p:ajax event="dateSelect" listener="#{login.onDateSelect}" />
+				</p:calendar>
+			</div>
+
+
+			<div class="messages-container">
+				<h:commandButton value="Show Events" action="#{login.ebentuetara}" />
+			</div>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

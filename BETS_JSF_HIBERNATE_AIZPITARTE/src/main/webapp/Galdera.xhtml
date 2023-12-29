@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:of="http://omnifaces.org/functions">
+<f:view>
+    <h:head>
+        <title>JavaServer Faces aplikazioa</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+            }
+
+            h1 {
+                text-align: center;
+                color: #333;
+                margin-top: 20px;
+            }
+
+            .calendar-container {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .dropdown-container {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+            }
+
+            .select-dropdown {
+                margin-right: 10px;
+            }
+
+            .messages-container {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .red-message {
+                color: red;
+            }
+
+            .blue-message {
+                color: blue;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div class="calendar-container">
+                <p:calendar id="kalendario" value="#{login.data}" navigator="false" mode="inline">
+                    <p:ajax event="dateSelect" listener="#{login.onDateSelect}" update="mezuak eventuakDropdown" />
+                </p:calendar>
+            </div>
+
+            <h1>Aukeratu zer egin nahi duzun</h1>
+
+            <div class="dropdown-container">
+                <h:panelGroup id="eventuakDropdown" value="#{login.e}">
+                    <h:selectOneMenu id="dropdown" value="#{login.deskripzioa}" styleClass="select-dropdown">
+                        <f:selectItems value="#{login.erakustekoak}" />
+                        <f:ajax listener="#{login.actualizarE}" />
+                    </h:selectOneMenu>
+                    <h:message id="dropdownMessage" for="dropdown" styleClass="blue-message" />
+                </h:panelGroup>
+            </div>
+
+            <div class="messages-container">
+                <h:messages id="mezuak" styleClass="red-message" />
+            </div>
+        </h:form>
+
+        <h:form>
+            <div class="messages-container">
+                <h:inputText id="inputText" value="#{login.deskripzioa}" />
+                <h:commandButton value="Onartu" action="#{login.gaderaSortu}" />
+            </div>
+        </h:form>
+    </h:body>
+</f:view>
+</html>

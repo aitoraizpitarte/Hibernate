@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+            
+    
+    <wb-module deploy-name="BETS_JSF_AIZPITARTE">
+                        
+        
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/java"/>
+                        
+        
+        <property name="context-root" value="BETS_JSF_AIZPITARTE"/>
+                        
+        
+        <property name="java-output-path" value="/BETS_JSF_AIZPITARTE/build/classes"/>
+                    
+    
+    </wb-module>
+        
+
+</project-modules>
