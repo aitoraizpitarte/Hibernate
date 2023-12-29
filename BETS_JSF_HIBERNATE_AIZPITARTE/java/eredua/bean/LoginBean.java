@@ -84,7 +84,7 @@ public class LoginBean {
 		this.i = i;
 		System.out.println("pero aqui no");
 		galde = new ArrayList<String>();
-		for (Question s : /*select*/) {
+		for (Question s : getQuestions()) {
 			galde.add(s.getQuestion());
 			System.out.println("galderak: " + s.getQuestion());
 		}
@@ -116,7 +116,7 @@ public class LoginBean {
 		erakustekoak = new ArrayList<String>();
 		galde = new ArrayList<String>();
 		this.data = data1;
-		for (Event s : e.createEvent /* selecta */) {
+		for (Event s : getEvents()) {
 			if (s.getEventDate().equals(data1)) {
 				erakustekoak.add(s.getDescription());
 			}
@@ -171,22 +171,21 @@ public class LoginBean {
 		return "sortu";
 	}
 
-	public Event getEventById(Integer zenb) {
+	public Event getEventById(Integer eventNumber) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		Query q = session.createQuery("select id from Event where eventDate= :d");
-		q.setParameter("date", d);
-		ArrayList result=(ArrayList) q.list();
+		Query q = session.createQuery("from Event where eventNumber= :eventNumber");
+
 		session.getTransaction().commit();
-		return result;
-		}
+		return (Event) q;
+
 	}
 	
 	public void addQuestion(Integer i2, String deskripzioa2, int j) {
 	    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 	    session.beginTransaction();
-
-	    Question question = new Question(i2,deskripzioa2, j);
+	    
+	    Question question = new Question(1,deskripzioa2, j, null);
 
 
 	    session.save(question);
@@ -332,25 +331,43 @@ public class LoginBean {
 	}
 	
 
-	private void createEvent(Event e) {
+	public void createEvent(Event e) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		session.persist(e);
 		session.getTransaction().commit();
 	}
 
-	private void createGalderak(Question q) {
+	public void createGalderak(Question q) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		session.persist(q);
 		session.getTransaction().commit();
 	}
 	
+	public ArrayList<String> getQuestion(Integer eventNumber){
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		List<Question> q = session.createQuery("from Question where eventNumber= :eventNumber").list();
+		
+		ArrayList result=(ArrayList) q;
+		session.getTransaction().commit();
+		return result;
+		
+	}
+	public ArrayList<Question> getQuestions() {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		List<Question> q = session.createQuery("from Question").list();
+		ArrayList result=(ArrayList)q;
+		session.getTransaction().commit();
+		return result;
+		}
 	public ArrayList<Event> getEvents() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		Query q = session.createQuery("select eventNumber from Event");
-		ArrayList result=(ArrayList) q.list();
+		List<Event> q = session.createQuery("from Event").list();
+		ArrayList result=(ArrayList)q;
 		session.getTransaction().commit();
 		return result;
 		}
@@ -358,9 +375,8 @@ public class LoginBean {
 	public ArrayList<Event> getEvents(Date d) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		Query q = session.createQuery("select eventNumber from Event where eventDate= :d");
-		q.setParameter("date", d);
-		ArrayList result=(ArrayList) q.list();
+		List<Event> q = session.createQuery("from Event where eventDate= :d").list();
+		ArrayList result=(ArrayList)q;
 		session.getTransaction().commit();
 		return result;
 		}
